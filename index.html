@@ -479,6 +479,48 @@
     .section-wrap { padding: 3.5rem 1.25rem; }
     .projects-grid { grid-template-columns: 1fr; }
   }
+
+/* MINI TAGS */
+.mini-tag{
+  padding: 0.35rem 0.8rem;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  background: rgba(251,191,36,0.12);
+  color: var(--amber);
+  border: 1px solid rgba(251,191,36,0.2);
+}
+
+.project-toggle{
+  cursor: pointer;
+}
+
+.hiresense-box{
+  margin-top: 2rem;
+  padding: 2rem;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+  display: none;
+}
+
+.hiresense-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.detail-card{
+  padding: 1.4rem;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+}
+
+.detail-card h4{
+  margin-bottom: 0.7rem;
+}
+
 </style>
 </head>
 <body>
@@ -581,15 +623,66 @@
         <span class="proj-corner">🌕</span>
       </div>
 
-      <div class="proj-card c-amber reveal">
-        <span class="proj-tag tag-amber">Machine Learning · NLP</span>
-        <h3>Resume Classifier</h3>
-        <p>An ML model that classifies resumes by job role — IT, Engineering, Chef, and more — using keyword extraction and predictive modelling to streamline hiring.</p>
-        <span class="proj-corner">📄</span>
-      </div>
+
+<div class="proj-card c-amber reveal project-toggle" onclick="toggleHireSense()">
+  <span class="proj-tag tag-amber">Machine Learning · NLP</span>
+  <h3>HireSense — Intelligent Resume Screening System</h3>
+
+  <p>
+    A machine learning-based resume classification system that predicts the most suitable job role from resume text using NLP, TF-IDF vectorisation, and supervised learning models.
+  </p>
+
+  <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+    <span class="mini-tag">SVM</span>
+    <span class="mini-tag">TF-IDF</span>
+    <span class="mini-tag">NLP</span>
+    <span class="mini-tag">Scikit-Learn</span>
+    <span class="mini-tag">Python</span>
+  </div>
+
+  <span class="proj-corner">📄</span>
+</div>
 
     </div>
   </div>
+
+<!-- HIRESENSE DETAILS -->
+<div id="hiresense-details" class="hiresense-box reveal">
+
+  <div class="hiresense-head">
+    <h2>HireSense</h2>
+    <span>AI-Powered Resume Screening & Job Role Prediction</span>
+  </div>
+
+  <p class="hiresense-intro">
+    HireSense is a machine learning-based intelligent resume screening system developed to automate the hiring workflow by predicting the most suitable job category from resume text.
+  </p>
+
+  <div class="hiresense-grid">
+
+    <div class="detail-card">
+      <h4>🧠 My Contribution</h4>
+      <p>
+        Worked on Support Vector Machine (SVM) optimisation, TF-IDF feature engineering, and model tuning for improved classification accuracy.
+      </p>
+    </div>
+
+    <div class="detail-card">
+      <h4>📊 Dataset</h4>
+      <p>
+        Trained on 2,484 resumes across 24 job categories using NLP preprocessing and supervised machine learning.
+      </p>
+    </div>
+
+    <div class="detail-card">
+      <h4>🚀 Performance</h4>
+      <p>
+        Best SVM model achieved 73.84% accuracy using balanced LinearSVC with bigram TF-IDF features.
+      </p>
+    </div>
+
+  </div>
+</div>
 </section>
 
 <!-- LEADERSHIP -->
@@ -657,5 +750,25 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+
+<script>
+function toggleHireSense(){
+  const box = document.getElementById("hiresense-details");
+
+  if(box.style.display === "block"){
+    box.style.display = "none";
+  } else {
+    box.style.display = "block";
+
+    setTimeout(() => {
+      box.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }, 100);
+  }
+}
+</script>
+
 </body>
 </html>
