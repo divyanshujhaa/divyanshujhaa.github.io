@@ -167,7 +167,7 @@
     font-size: 1.1rem;
     color: var(--text2);
     line-height: 1.75;
-    max-width: 580px;
+    max-width: 620px;
     margin-bottom: 2.5rem;
     opacity: 0;
     animation: fadeUp 0.7s 0.35s forwards;
@@ -280,11 +280,22 @@
 
   /* SKILLS */
   .skills-section { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .skills-category-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent2);
+    margin: 1.5rem 0 0.75rem 0;
+  }
+  .skills-category-title:first-of-type { margin-top: 0; }
   .skills-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
+    margin-bottom: 2rem;
   }
+  .skills-grid:last-of-type { margin-bottom: 0; }
   .skill-item {
     display: flex;
     align-items: center;
@@ -302,13 +313,67 @@
   .skill-item:hover { background: var(--card-h); border-color: var(--border2); color: var(--text); transform: translateY(-2px); }
   .skill-icon { font-size: 1rem; }
 
+  /* CERTIFICATIONS AS CLICKABLE LINKS */
+  .cert-link {
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .cert-link:hover {
+    background: rgba(124,109,250,0.12) !important;
+    border-color: var(--accent2) !important;
+    color: var(--text) !important;
+    box-shadow: 0 4px 20px rgba(124,109,250,0.15);
+  }
+  .cert-arrow {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    margin-left: 0.4rem;
+    transition: transform 0.2s;
+  }
+  .cert-link:hover .cert-arrow {
+    transform: translate(2px, -2px);
+    opacity: 1;
+  }
+
+  /* EDUCATION TIMELINE */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .edu-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 1.75rem;
+    position: relative;
+    transition: all 0.25s;
+  }
+  .edu-card:hover { background: var(--card-h); border-color: var(--border2); transform: translateY(-2px); }
+  .edu-badge {
+    position: absolute;
+    top: 1.75rem; right: 1.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--teal);
+    background: rgba(45,212,191,0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+  }
+  .edu-card h3 { font-family: 'Syne', sans-serif; font-size: 1.2rem; color: var(--text); margin-bottom: 0.25rem; }
+  .edu-sub { font-size: 0.9rem; color: var(--accent2); font-weight: 500; margin-bottom: 0.75rem; }
+  .edu-meta { font-size: 0.85rem; color: var(--text3); margin-bottom: 1rem; }
+  .edu-details { font-size: 0.9rem; color: var(--text2); }
+  .coursework-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+  .cw-tag { font-size: 0.75rem; background: rgba(255,255,255,0.04); border: 1px solid var(--border); padding: 0.2rem 0.6rem; border-radius: 4px; color: var(--text2); }
+
   /* PROJECTS */
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 1.5rem;
   }
-  @media (max-width: 700px) { .projects-grid { grid-template-columns: 1fr; } }
   .proj-card {
     position: relative;
     background: var(--card);
@@ -327,8 +392,9 @@
     opacity: 0;
     transition: opacity 0.3s;
   }
-  .proj-card:hover { background: var(--card-h); border-color: var(--border2); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+  .proj-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
   .proj-card:hover::before { opacity: 1; }
+  .proj-tag-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
   .proj-tag {
     display: inline-block;
     font-size: 0.72rem;
@@ -337,17 +403,17 @@
     text-transform: uppercase;
     padding: 0.3rem 0.8rem;
     border-radius: 100px;
-    margin-bottom: 1rem;
   }
+  .proj-year { font-size: 0.8rem; font-weight: 600; color: var(--text3); }
   .proj-card h3 {
     font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 700;
     letter-spacing: -0.02em;
     margin-bottom: 0.6rem;
     color: var(--text);
   }
-  .proj-card p { font-size: 0.92rem; color: var(--text2); line-height: 1.7; }
+  .proj-card p { font-size: 0.92rem; color: var(--text2); line-height: 1.7; margin-bottom: 1.25rem; }
   .proj-corner {
     position: absolute;
     bottom: 1.5rem; right: 1.5rem;
@@ -367,11 +433,41 @@
   .c-coral { --proj-color: var(--coral); }
   .c-amber { --proj-color: var(--amber); }
 
+  /* INTERACTIVE DETAIL BOXES */
+  .project-details-container { margin-top: 2.5rem; }
+  .details-box {
+    padding: 2.5rem;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    backdrop-filter: blur(10px);
+    display: none;
+    animation: fadeIn 0.4s ease forwards;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+  .details-head { margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+  .details-head h2 { font-family: 'Syne', sans-serif; font-size: 1.75rem; color: var(--text); }
+  .details-head span { color: var(--accent2); font-size: 0.95rem; font-weight: 500; }
+  .details-intro { color: var(--text2); margin-bottom: 1.5rem; font-size: 1rem; }
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  .detail-card {
+    padding: 1.5rem;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+  }
+  .detail-card h4 { font-family: 'Syne', sans-serif; margin-bottom: 0.7rem; color: var(--text); font-size: 1rem; }
+  .detail-card p { font-size: 0.9rem; color: var(--text2); line-height: 1.6; }
+
   /* LEADERSHIP */
   .roles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
   }
   .role-card {
     background: var(--card);
@@ -381,6 +477,8 @@
     transition: all 0.25s;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
   .role-card::after {
     content: '';
@@ -394,21 +492,19 @@
   }
   .role-card:hover { background: var(--card-h); transform: translateY(-3px); }
   .role-card:hover::after { transform: scaleX(1); }
-  .role-dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--role-color);
-    margin-bottom: 1rem;
-  }
+  .role-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
+  .role-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--role-color); }
+  .role-duration { font-size: 0.75rem; color: var(--text3); font-weight: 600; }
   .role-card h4 {
     font-family: 'Syne', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--text);
     margin-bottom: 0.25rem;
     letter-spacing: -0.01em;
   }
-  .role-card span { font-size: 0.85rem; color: var(--text2); }
+  .role-card span { font-size: 0.85rem; color: var(--text2); margin-bottom: 0.75rem; display: block; }
+  .role-desc { font-size: 0.82rem; color: var(--text2); opacity: 0.8; line-height: 1.5; }
 
   /* CONTACT */
   .contact-section { background: var(--bg2); border-top: 1px solid var(--border); }
@@ -478,49 +574,18 @@
     .hero { padding: 6rem 1.25rem 4rem; }
     .section-wrap { padding: 3.5rem 1.25rem; }
     .projects-grid { grid-template-columns: 1fr; }
+    .details-box { padding: 1.5rem; }
   }
 
-/* MINI TAGS */
-.mini-tag{
-  padding: 0.35rem 0.8rem;
-  border-radius: 100px;
-  font-size: 0.72rem;
-  background: rgba(251,191,36,0.12);
-  color: var(--amber);
-  border: 1px solid rgba(251,191,36,0.2);
-}
-
-.project-toggle{
-  cursor: pointer;
-}
-
-.hiresense-box{
-  margin-top: 2rem;
-  padding: 2rem;
-  border-radius: 24px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,0.03);
-  display: none;
-}
-
-.hiresense-grid{
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.detail-card{
-  padding: 1.4rem;
-  border-radius: 18px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--border);
-}
-
-.detail-card h4{
-  margin-bottom: 0.7rem;
-}
-
+  .mini-tag{
+    padding: 0.35rem 0.8rem;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    background: rgba(255,255,255,0.04);
+    color: var(--text2);
+    border: 1px solid var(--border);
+  }
+  .project-toggle{ cursor: pointer; }
 </style>
 </head>
 <body>
@@ -531,15 +596,16 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#"><span>DJ</span> &nbsp;Divyanshu Jha</a>
+  <a class="nav-logo" href="#"> &nbsp;Divyanshu Jha</a>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
     <a href="#projects">Projects</a>
     <a href="#leadership">Leadership</a>
     <a href="#contact">Contact</a>
   </div>
-  <a class="nav-cta" href="mailto:djha1258@gmail.com">Hire Me</a>
+  <a class="nav-cta" href="#contact">Hire Me</a>
 </nav>
 
 <!-- HERO -->
@@ -552,7 +618,7 @@
       </div>
       <h1>Divyanshu<br><span class="highlight">Jha.</span></h1>
       <p class="hero-sub">
-        Second-year Computer Science student specialising in Artificial Intelligence & Machine Learning at Manav Rachna University. I build computer vision systems, ML pipelines, and intelligent software that solves real-world problems.
+        Computer Science student specialising in Artificial Intelligence & Machine Learning at Manav Rachna University. I design and deploy end-to-end ML systems from data preprocessing and feature engineering to model optimization and real-world implementation.
       </p>
       <div class="hero-actions">
         <a href="#projects" class="btn-primary">
@@ -572,7 +638,7 @@
   </div>
 </section>
 
-<!-- SKILLS -->
+<!-- SKILLS & CERTIFICATIONS -->
 <section id="skills" class="skills-section">
   <div class="section-wrap">
     <div class="section-header reveal">
@@ -580,140 +646,422 @@
       <h2 class="section-title">Skills</h2>
       <div class="section-line"></div>
     </div>
-    <div class="skills-grid reveal">
-      <div class="skill-item"><span class="skill-icon">🐍</span> Python</div>
-      <div class="skill-item"><span class="skill-icon">☕</span> Java</div>
-      <div class="skill-item"><span class="skill-icon">⚙️</span> C</div>
-      <div class="skill-item"><span class="skill-icon">🗄️</span> SQL</div>
-      <div class="skill-item"><span class="skill-icon">🛢️</span> DBMS</div>
-      <div class="skill-item"><span class="skill-icon">📐</span> AutoCAD</div>
-      <div class="skill-item"><span class="skill-icon">🎨</span> Canva</div>
+
+    <div class="reveal">
+      <div class="skills-category-title">Languages</div>
+      <div class="skills-grid">
+        <div class="skill-item"><span class="skill-icon">🐍</span> Python</div>
+        <div class="skill-item"><span class="skill-icon">☕</span> Java</div>
+        <div class="skill-item"><span class="skill-icon">⚙️</span> C</div>
+        <div class="skill-item"><span class="skill-icon">🗄️</span> SQL</div>
+      </div>
+
+      <div class="skills-category-title">ML / AI &amp; Data Science</div>
+      <div class="skills-grid">
+        <div class="skill-item"><span class="skill-icon">🤖</span> Scikit-learn</div>
+        <div class="skill-item"><span class="skill-icon">🔥</span> TensorFlow / Keras</div>
+        <div class="skill-item"><span class="skill-icon">👁️</span> OpenCV</div>
+        <div class="skill-item"><span class="skill-icon">🕸️</span> CNN</div>
+        <div class="skill-item"><span class="skill-icon">📈</span> SVM</div>
+        <div class="skill-item"><span class="skill-icon">💬</span> NLP &amp; TF-IDF</div>
+        <div class="skill-item"><span class="skill-icon">🛠️</span> Feature Engineering</div>
+        <div class="skill-item"><span class="skill-icon">📊</span> Model Tuning &amp; Preprocessing</div>
+      </div>
+
+      <div class="skills-category-title">Databases &amp; Tools</div>
+      <div class="skills-grid">
+        <div class="skill-item"><span class="skill-icon">🛢️</span> DBMS</div>
+        <div class="skill-item"><span class="skill-icon">🐙</span> GitHub</div>
+        <div class="skill-item"><span class="skill-icon">🚀</span> Google Colab</div>
+        <div class="skill-item"><span class="skill-icon">◈</span> Netlify</div>
+        <div class="skill-item"><span class="skill-icon">📐</span> AutoCAD</div>
+        <div class="skill-item"><span class="skill-icon">🎨</span> Canva</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION & CERTIFICATIONS -->
+<section id="education">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Education &amp; Certifications</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="edu-grid reveal">
+      <div class="edu-card">
+        <span class="edu-badge">CGPA: 7.88</span>
+        <h3>Manav Rachna University</h3>
+        <p class="edu-sub">B.Tech - Computer Science &amp; Engineering (AI &amp; ML)</p>
+        <p class="edu-meta">2024 — 2028 | In collaboration with Xebia</p>
+        <p class="edu-details">Focusing on complex computing systems, neural architecture designs, and algorithmic frameworks.</p>
+        <div class="coursework-tags">
+          <span class="cw-tag">DSA</span><span class="cw-tag">DBMS</span><span class="cw-tag">Machine Learning</span><span class="cw-tag">Artificial Intelligence</span><span class="cw-tag">ANN</span><span class="cw-tag">Java</span><span class="cw-tag">C</span>
+        </div>
+      </div>
+
+      <div class="edu-card">
+        <span class="edu-badge">75.6%</span>
+        <h3>DAV Public School, Faridabad</h3>
+        <p class="edu-sub">Class XII (CBSE)</p>
+        <p class="edu-meta">Completed 2024</p>
+        <p class="edu-details">Core sciences and mathematics foundation accelerating tech capabilities.</p>
+      </div>
+
+      <div class="edu-card">
+        <span class="edu-badge">90%</span>
+        <h3>DAV Public School, Faridabad</h3>
+        <p class="edu-sub">Class X (CBSE)</p>
+        <p class="edu-meta">Completed 2022</p>
+        <p class="edu-details">Academic excellence in foundational studies.</p>
+      </div>
+    </div>
+
+    <!-- CLICKABLE CERTIFICATIONS GRID -->
+    <div class="reveal">
+      <div class="skills-category-title">Certifications (Click to view)</div>
+      <div class="skills-grid">
+        <a href="https://drive.google.com/file/d/1FUWZ8Bnv_nyrAG_vuAWSCTYhrKarJuBu/view?usp=sharing" target="_blank" class="skill-item cert-link">
+          <span class="skill-icon">⚛️</span> Quantum Computing with Qiskit Ultimate Masterclass (Nov 2024) <span class="cert-arrow">↗</span>
+        </a>
+        <a href="https://drive.google.com/file/d/1eDm3s6kYrXJ8xl4OIe2NDCjvoQeLoLrA/view?usp=sharing" target="_blank" class="skill-item cert-link">
+          <span class="skill-icon">🐍</span> Python Program 101 — Infosys Springboard (Mar 2025) <span class="cert-arrow">↗</span>
+        </a>
+        <a href="https://drive.google.com/file/d/1FmGJn2Nxp_va0KYw6Z0lClTbUMZEvqPX/view?usp=sharing" target="_blank" class="skill-item cert-link">
+          <span class="skill-icon">💻</span> Python Programming from Zero — Infosys Springboard (Mar 2025) <span class="cert-arrow">↗</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects">
-  <div class="section-wrap">
-    <div class="section-header reveal">
-      <span class="section-num">02</span>
-      <h2 class="section-title">Projects</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="projects-grid">
-
-      <div class="proj-card c-coral reveal">
-        <span class="proj-tag tag-coral">Software · OCR</span>
-        <h3>Medicine Expiry Scanner</h3>
-        <p>An intelligent scanning tool that reads and detects medicine expiry dates, automatically flagging expired or near-expiry products to ensure medication safety.</p>
-        <span class="proj-corner">💊</span>
-      </div>
-
-      <div class="proj-card c-teal reveal">
-        <span class="proj-tag tag-teal">Computer Vision · CNN</span>
-        <h3>Emotion Detection System</h3>
-        <p>Real-time facial emotion recognition using a Convolutional Neural Network that classifies human expressions — happy, sad, neutral, and angry — with high accuracy.</p>
-        <span class="proj-corner">😊</span>
-      </div>
-
-      <div class="proj-card c-purple reveal">
-        <span class="proj-tag tag-purple">CNN · Space Technology</span>
-        <h3>Lunar Crater Detection</h3>
-        <p>Detects craters on the Moon's surface using CNN-based image analysis and estimates crater depth through pixel-level computation — bridging AI and space science.</p>
-        <span class="proj-corner">🌕</span>
-      </div>
-
-
-<div class="proj-card c-amber reveal project-toggle" onclick="toggleHireSense()">
-  <span class="proj-tag tag-amber">Machine Learning · NLP</span>
-  <h3>HireSense — Intelligent Resume Screening System</h3>
-
-  <p>
-    A machine learning-based resume classification system that predicts the most suitable job role from resume text using NLP, TF-IDF vectorisation, and supervised learning models.
-  </p>
-
-  <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
-    <span class="mini-tag">SVM</span>
-    <span class="mini-tag">TF-IDF</span>
-    <span class="mini-tag">NLP</span>
-    <span class="mini-tag">Scikit-Learn</span>
-    <span class="mini-tag">Python</span>
-  </div>
-
-  <span class="proj-corner">📄</span>
-</div>
-
-    </div>
-  </div>
-
-<!-- HIRESENSE DETAILS -->
-<div id="hiresense-details" class="hiresense-box reveal">
-
-  <div class="hiresense-head">
-    <h2>HireSense</h2>
-    <span>AI-Powered Resume Screening & Job Role Prediction</span>
-  </div>
-
-  <p class="hiresense-intro">
-    HireSense is a machine learning-based intelligent resume screening system developed to automate the hiring workflow by predicting the most suitable job category from resume text.
-  </p>
-
-  <div class="hiresense-grid">
-
-    <div class="detail-card">
-      <h4>🧠 My Contribution</h4>
-      <p>
-        Worked on Support Vector Machine (SVM) optimisation, TF-IDF feature engineering, and model tuning for improved classification accuracy.
-      </p>
-    </div>
-
-    <div class="detail-card">
-      <h4>📊 Dataset</h4>
-      <p>
-        Trained on 2,484 resumes across 24 job categories using NLP preprocessing and supervised machine learning.
-      </p>
-    </div>
-
-    <div class="detail-card">
-      <h4>🚀 Performance</h4>
-      <p>
-        Best SVM model achieved 73.84% accuracy using balanced LinearSVC with bigram TF-IDF features.
-      </p>
-    </div>
-
-  </div>
-</div>
-</section>
-
-<!-- LEADERSHIP -->
-<section id="leadership" style="background: var(--bg2); border-top: 1px solid var(--border);">
+<section id="projects" style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
   <div class="section-wrap">
     <div class="section-header reveal">
       <span class="section-num">03</span>
-      <h2 class="section-title">Leadership</h2>
+      <h2 class="section-title">Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    
+    <div class="projects-grid">
+
+      <!-- PROJECT 1: LUNAR -->
+      <div class="proj-card c-purple reveal project-toggle" onclick="toggleDetails('lunar-details')">
+        <div class="proj-tag-row">
+          <span class="proj-tag tag-purple">Object Detection · YOLOv8</span>
+          <span class="proj-year">2026</span>
+        </div>
+        <h3>Lunar Crater Detection</h3>
+        <p>Advanced object detection architecture localized on 8,756 lunar satellite images to automate craters mapping. Accompanied by a formal Research Paper.</p>
+        <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+          <span class="mini-tag">YOLOv8</span><span class="mini-tag">PyTorch</span><span class="mini-tag">Research</span>
+        </div>
+        <span class="proj-corner">🌕</span>
+      </div>
+
+      <!-- PROJECT 2: EMOTIVISION -->
+      <div class="proj-card c-teal reveal project-toggle" onclick="toggleDetails('emoti-details')">
+        <div class="proj-tag-row">
+          <span class="proj-tag tag-teal">Computer Vision · CNN</span>
+          <span class="proj-year">2026</span>
+        </div>
+        <h3>EmotiVision System</h3>
+        <p>Real-time facial expression classifier processing micro-expressions through custom deep layers via live webcams with data-augmented stability.</p>
+        <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+          <span class="mini-tag">CNN</span><span class="mini-tag">TensorFlow</span><span class="mini-tag">OpenCV</span>
+        </div>
+        <span class="proj-corner">😊</span>
+      </div>
+
+      <!-- PROJECT 3: HIRESENSE -->
+      <div class="proj-card c-amber reveal project-toggle" onclick="toggleDetails('hiresense-details')">
+        <div class="proj-tag-row">
+          <span class="proj-tag tag-amber">NLP · Machine Learning</span>
+          <span class="proj-year">2026</span>
+        </div>
+        <h3>HireSense Screener</h3>
+        <p>Intelligent resume parser utilizing multi-class predictive classifications over massive corpus data distributions to map best job fits automatically.</p>
+        <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+          <span class="mini-tag">SVM</span><span class="mini-tag">TF-IDF</span><span class="mini-tag">NLP</span>
+        </div>
+        <span class="proj-corner">📄</span>
+      </div>
+
+      <!-- PROJECT 4: KRISHI BAZAAR -->
+      <div class="proj-card c-coral reveal project-toggle" onclick="toggleDetails('krishi-details')">
+        <div class="proj-tag-row">
+          <span class="proj-tag tag-coral">React · Full-Stack Marketplace</span>
+          <span class="proj-year">2026</span>
+        </div>
+        <h3>Krishi Bazaar</h3>
+        <p>GPS-enabled direct farm marketplace driving ~40% cost reduction margins via middleman removal layers and progressive 3-phase storytelling.</p>
+        <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+          <span class="mini-tag">React 18</span><span class="mini-tag">Tailwind</span><span class="mini-tag">Geolocation API</span>
+        </div>
+        <span class="proj-corner">🌾</span>
+      </div>
+
+      <!-- PROJECT 5: MEDICINE EXPIRES -->
+      <div class="proj-card c-teal reveal project-toggle" onclick="toggleDetails('freshtrack-details')">
+        <div class="proj-tag-row">
+          <span class="proj-tag tag-teal">Frontend Engineering</span>
+          <span class="proj-year">2026</span>
+        </div>
+        <h3>Fresh Track Expiry Scanner</h3>
+        <p>Pure programmatic browser tracker updating dynamic medical stocks, live warning structures, and data caching using pure vanilla implementations.</p>
+        <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+          <span class="mini-tag">Vanilla JS</span><span class="mini-tag">localStorage</span><span class="mini-tag">CSS Grid</span>
+        </div>
+        <span class="proj-corner">💊</span>
+      </div>
+
+    </div>
+
+    <!-- DYNAMIC DETAIL PANELS CONTAINER -->
+    <div class="project-details-container">
+      
+      <!-- LUNAR DETAILS -->
+      <div id="lunar-details" class="details-box">
+        <div class="details-head">
+          <h2>Lunar Crater Detection Using YOLOv8</h2>
+          <span>Deep Learning & Satellite Data Analysis</span>
+        </div>
+        <p class="details-intro">An independent machine learning study tracking automated crater profiling across complex celestial dimensions. Formally written as a Research Paper currently Under Review at Manav Rachna University.</p>
+        <div class="details-grid">
+          <div class="detail-card">
+            <h4>📈 Performance Metrics</h4>
+            <p>Achieved outstanding mAP50 score of 0.925 with a highly structured Precision of ~0.85 and Recall curves matching ~0.84 on complex test items.</p>
+          </div>
+          <div class="detail-card">
+            <h4>🛰️ Processing Architecture</h4>
+            <p>Trained a detailed YOLOv8n network model over 8,756 annotated lunar frames via Tesla T4 GPU hardware layers, ensuring swift multi-epoch parameters convergence.</p>
+          </div>
+          <div class="detail-card">
+            <h4>🔮 Practical Scale</h4>
+            <p>Successfully extracted and labeled 133 individual topological craters in a single layout frame validation pass over completely un-indexed satellite materials.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- EMOTIVISION DETAILS -->
+      <div id="emoti-details" class="details-box">
+        <div class="details-head">
+          <h2>EmotiVision — Real-Time Face Expression Engine</h2>
+          <span>Convolutional Neural Networks & OpenCV Integration</span>
+        </div>
+        <p class="details-intro">An end-to-end computer vision program developed to map, classify, and track live human emotions efficiently without layout frame latency gaps.</p>
+        <div class="details-grid">
+          <div class="detail-card">
+            <h4>🎭 Class Configurations</h4>
+            <p>Classifies expressions cleanly into 7 separate behavioral categories: Happy, Sad, Neutral, Surprised, Disgust, Fear, and Angry via dynamic matrix overlays.</p>
+          </div>
+          <div class="detail-card">
+            <h4>🧪 Data Engineering</h4>
+            <p>Configured geometric shifts like direct structural flips, controlled rotations, and localized zooming to restrict overfitting constraints completely.</p>
+          </div>
+          <div class="detail-card">
+            <h4>📹 Interface Matrix</h4>
+            <p>Uses OpenCV bindings to establish real-time face boundary detections, placing fluid frame-by-frame emotion graphic labels dynamically.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- HIRESENSE DETAILS -->
+      <div id="hiresense-details" class="details-box">
+        <div class="details-head">
+          <h2>HireSense — Intelligent Resume Screening System</h2>
+          <span>Automated NLP Workforce Classification Engine</span>
+        </div>
+        <p class="details-intro">Supervised natural language framework optimizing talent processing metrics inside systemic hiring infrastructures using math-based vectorizations.</p>
+        <div class="details-grid">
+          <div class="detail-card">
+            <h4>🧠 Feature Engineering</h4>
+            <p>Deployed complex text pre-processing passes involving tokens, absolute text filtering, lemmatization steps, and extensive unigram/bigram TF-IDF maps.</p>
+          </div>
+          <div class="detail-card">
+            <h4>📊 Data Scale & Split</h4>
+            <p>Trained classifiers over 2,484 separate digital CV files dividing predictions cleanly across 24 standalone corporate recruitment roles.</p>
+          </div>
+          <div class="detail-card">
+            <h4>🚀 Model Selection</h4>
+            <p>Evaluated LinearSVC, Logistic Regression, and Naive Bayes architectures. The balanced LinearSVC classifier achieved peak accuracy metrics hitting 73.84%.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- KRISHI BAZAAR DETAILS -->
+      <div id="krishi-details" class="details-box">
+        <div class="details-head">
+          <h2>Krishi Bazaar — Farmer's Digital Ecosystem</h2>
+          <span>Decentralized Regional Trade Layouts</span>
+        </div>
+        <p class="details-intro">An active, user-centric marketplace engineering solution lowering middleman margins to support Indian agricultural producers effectively.</p>
+        <div class="details-grid">
+          <div class="detail-card">
+            <h4>📍 Smart Mapping</h4>
+            <p>Integrated native browser-level Geolocation APIs enabling proximity queries and direct product catalog updates based on localized spatial parameters.</p>
+          </div>
+          <div class="detail-card">
+            <h4>🌾 Creative Experience</h4>
+            <p>Constructed an intuitive 3-phase user story layout (Sowing → Nurturing → Harvest) equipped with custom SVG layout animations and functional price calculations.</p>
+          </div>
+          <div class="detail-card">
+            <h4>⚡ Core Tech Features</h4>
+            <p>Built with React 18, Vite, and Tailwind CSS to achieve quick page rendering and responsive cross-device layouts. Deployed on Netlify.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FRESH TRACK DETAILS -->
+      <div id="freshtrack-details" class="details-box">
+        <div class="details-head">
+          <h2>Fresh Track — Medicine Expiry Scanner</h2>
+          <span>Pure Vanilla Engineering & Data State Persistence</span>
+        </div>
+        <p class="details-intro">A highly interactive web dashboard tracking stocks and alert structures built purely on native DOM scripts without external frameworks.</p>
+        <div class="details-grid">
+          <div class="detail-card">
+            <h4>📦 Native Architecture</h4>
+            <p>Features an end-to-end multi-tab dashboard tracking full CRUD operations, barcode layout simulation, and structured scan workflows using pure JavaScript.</p>
+          </div>
+          <div class="detail-card">
+            <h4>🚨 Expiry Engine</h4>
+            <p>Processes real-time entries to sort medicines cleanly into Safe, Expiring Soon, or Expired groups using dynamic colour-coded badges and interface updates.</p>
+          </div>
+          <div class="detail-card">
+            <h4>💾 Client Storage</h4>
+            <p>Maintains inventory data across browser boots using persistent localStorage, working together with animated CSS transitions and glass layout layers.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP (ALL 10 ROLES INTEGRATED) -->
+<section id="leadership">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Leadership &amp; Campus Engagement</h2>
       <div class="section-line"></div>
     </div>
     <div class="roles-grid">
+      
+      <!-- Role 1 -->
       <div class="role-card reveal" style="--role-color: var(--accent2);">
-        <div class="role-dot"></div>
+        <div class="role-top">
+          <div class="role-dot"></div>
+          <span class="role-duration">2025 - Present</span>
+        </div>
         <h4>Editorial Head</h4>
-        <span>Student Welfare, MRU</span>
+        <span>Student Welfare, Manav Rachna University</span>
+        <p class="role-desc">Managing core content plans, review steps, and team workflows across major campus newsletters and institutional reports.</p>
       </div>
+
+      <!-- Role 2 -->
       <div class="role-card reveal" style="--role-color: var(--teal);">
-        <div class="role-dot"></div>
-        <h4>Editing Team Member</h4>
-        <span>MRCPS</span>
+        <div class="role-top">
+          <div class="role-dot"></div>
+          <span class="role-duration">2024 - 2025</span>
+        </div>
+        <h4>Team Member</h4>
+        <span>Editorial Team (Graphics)</span>
+        <p class="role-desc">Designing digital layouts, publication mockups, and cross-channel visual assets for university updates.</p>
       </div>
+
+      <!-- Role 3 -->
       <div class="role-card reveal" style="--role-color: var(--coral);">
-        <div class="role-dot"></div>
+        <div class="role-top">
+          <div class="role-dot"></div>
+          <span class="role-duration">2024 - 2025</span>
+        </div>
+        <h4>Team Member</h4>
+        <span>Editorial Team (Content)</span>
+        <p class="role-desc">Drafting copies, structured documentation, and writing informative articles for university-wide releases.</p>
+      </div>
+
+      <!-- Role 4 -->
+      <div class="role-card reveal" style="--role-color: var(--amber);">
+        <div class="role-top">
+          <div class="role-dot"></div>
+          <span class="role-duration">2024 - 2025</span>
+        </div>
+        <h4>Team Member</h4>
+        <span>Working Team</span>
+        <p class="role-desc">Coordinating with cross-functional committees to handle execution, logistics, and resource alignment during major events.</p>
+      </div>
+
+      <!-- Role 5 -->
+      <div class="role-card reveal" style="--role-color: var(--teal);">
+        <div class="role-top">
+          <div class="role-dot"></div>
+          <span class="role-duration">2024 - 2025</span>
+        </div>
+        <h4>Team Member</h4>
+        <span>MRCPS (Editing Team)</span>
+        <p class="role-desc">Reviewing, grammar auditing, and aligning technical structural documentation guidelines across team tasks.</p>
+      </div>
+
+      <!-- Role 6 -->
+      <div class="role-card reveal" style="--role-color: var(--accent2);">
+        <div class="role-top">
+          <div class="role-dot"></div>
+          <span class="role-duration">2024 - 2025</span>
+        </div>
         <h4>Team Member</h4>
         <span>TEDxMRU</span>
+        <p class="role-desc">Managed speaker alignment setups, ground assets distribution, and structural event flow mapping during live phases.</p>
       </div>
+
+      <!-- Role 7 -->
+      <div class="role-card reveal" style="--role-color: var(--coral);">
+        <div class="role-top">
+          <div class="role-dot"></div>
+          <span class="role-duration">2024 - 2025</span>
+        </div>
+        <h4>Team Member</h4>
+        <span>Drishti (Media Society)</span>
+        <p class="role-desc">Managed real-time multi-media recording arrays and digital content distribution layers across major campus fests.</p>
+      </div>
+
+      <!-- Role 8 -->
       <div class="role-card reveal" style="--role-color: var(--amber);">
-        <div class="role-dot"></div>
-        <h4>Media Team Member</h4>
-        <span>Drishti</span>
+        <div class="role-top">
+          <div class="role-dot"></div>
+          <span class="role-duration">2024 - 2025</span>
+        </div>
+        <h4>Team Member</h4>
+        <span>OP BHALLA Foundation (Social Media Team)</span>
+        <p class="role-desc">Creating outreach copy and asset distributions tracking community growth campaigns and awareness pipelines.</p>
       </div>
+
+      <!-- Role 9 -->
+      <div class="role-card reveal" style="--role-color: var(--teal);">
+        <div class="role-top">
+          <div class="role-dot"></div>
+          <span class="role-duration">2024 - 2025</span>
+        </div>
+        <h4>Team Member</h4>
+        <span>ISR</span>
+        <p class="role-desc">Contributing to Institutional Social Responsibility goals by setting up local drives and supporting community-focused activities.</p>
+      </div>
+
+      <!-- Role 10 -->
+      <div class="role-card reveal" style="--role-color: var(--accent2);">
+        <div class="role-top">
+          <div class="role-dot"></div>
+          <span class="role-duration">2024 - 2025</span>
+        </div>
+        <h4>Team Member</h4>
+        <span>Clan Volunteer</span>
+        <p class="role-desc">Liaising within institutional clan blocks to facilitate structural orientation workflows and student onboarding support.</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -722,7 +1070,7 @@
 <section id="contact" class="contact-section">
   <div class="contact-inner">
     <h2 class="reveal">Let's Connect.</h2>
-    <p class="reveal">Open to collaborations, project discussions, and opportunities. Feel free to reach out!</p>
+    <p class="reveal">Open to collaborations, machine learning systems benchmarking, and data-driven project requests. Get in touch!</p>
     <div class="contact-links reveal">
       <a class="contact-link" href="mailto:djha1258@gmail.com">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 6 10-6"/></svg>
@@ -737,37 +1085,44 @@
 </section>
 
 <footer>
-  <p>Divyanshu Jha &nbsp;·&nbsp; B.Tech CSE (AI &amp; ML) &nbsp;·&nbsp; Manav Rachna University &nbsp;·&nbsp; 2025</p>
+  <p>Divyanshu Jha &nbsp;·&nbsp; B.Tech CSE (AI &amp; ML) &nbsp;·&nbsp; Manav Rachna University &nbsp;·&nbsp; 2026</p>
 </footer>
 
 <script>
+  // REVEAL ANIMATIONS ON SCROLL
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
         setTimeout(() => e.target.classList.add('visible'), i * 80);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.05 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
 
-<script>
-function toggleHireSense(){
-  const box = document.getElementById("hiresense-details");
-
-  if(box.style.display === "block"){
-    box.style.display = "none";
-  } else {
-    box.style.display = "block";
-
-    setTimeout(() => {
-      box.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }, 100);
+  // MULTI-PROJECT TOGGLE MECHANISM
+  function toggleDetails(targetId) {
+    const activeBox = document.getElementById(targetId);
+    const allBoxes = document.querySelectorAll('.details-box');
+    
+    // Check if clicked box is already open
+    if (activeBox.style.display === "block") {
+      activeBox.style.display = "none";
+    } else {
+      // Hide all other open boxes
+      allBoxes.forEach(box => box.style.display = "none");
+      
+      // Open target box
+      activeBox.style.display = "block";
+      
+      // Smoothly view deep-dive block
+      setTimeout(() => {
+        activeBox.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }, 120);
+    }
   }
-}
 </script>
 
 </body>
